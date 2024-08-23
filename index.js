@@ -93,8 +93,9 @@ const run = async () => {
     if (get_org_summary) {
       const org_response = await org_req;
       const org_csv = orgcsv(org_response.data);
-      writeFileSync('org_copilot_usage_metrics.csv', org_csv);
-      await artifact.uploadArtifact('org_copilot_usage_metrics', ['org_copilot_usage_metrics.csv'], '.' );
+      const file_name=org_name+"org_copilot_usage_metrics.csv";
+      writeFileSync(file_name, org_csv);
+      await artifact.uploadArtifact(file_name, file_name, '.' );
     }
 
     if (get_team_summary) {
